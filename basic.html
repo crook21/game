@@ -7,11 +7,102 @@
 </head>
 <body>
     <script>
-        console.log("Devin");
-        prompt("Rock, Paper, or Scissors")
-        let Rock=("1");
-        let Paper=("2");
-        let Scissors=("3");
+        let score = 0;
+        function playerChoice(){
+            let badInput = true;
+            let playerResponse = "";
+            let correctInputs = ["rock", "paper", "scissors"];
+             
+                
+            while (badInput){
+                playerResponse =  prompt ('Rock, Paper, or Scissors').toLowerCase();
+                if (correctInputs.includes(playerResponse)){
+                    badInput = false;    
+                    return playerResponse; 
+                    
+                }
+                score -= 1;
+                alert(`YOU SHOULD HAVE LISTENED TO ME!!!!! Your score was ${score + 1} now it it is ${score}`);
+                alert(score);
+            } 
+            
+        }
+        function computerChoice(){
+           
+            let randNum =Math.floor(Math.random()*3);
+            if (randNum==0){
+                return "rock";                
+            }
+            else if (randNum==1){
+                return "paper"; 
+            }
+            else {
+                return "scissors"; 
+            }
+        } 
+        function singleRound(playerChoice, computerChoice){
+            if(playerChoice == computerChoice){
+                return `TIE!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            
+            }else if (computerChoice== "rock" && playerChoice=="scissors"){
+                score-=1;        
+                return `YOU LOSE!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            }else if (computerChoice=="scissors" && playerChoice=="paper"){
+                score-=1;        
+                return `YOU LOSE!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            }else if (computerChoice=="paper" && playerChoice== "rock"){
+                score-=1;        
+                return `YOU LOSE!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            }else if (computerChoice=="paper" && playerChoice=="scissors"){
+                score+=1;        
+                return `YOU WIN!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            }else if (computerChoice== "rock" && playerChoice=="paper"){
+                score+=1;        
+                return `YOU WIN!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            }else if (computerChoice=="scissors" && playerChoice== "rock"){
+                score+=1;        
+                return `YOU WIN!!!!: you chose ${playerChoice}, the com chose ${computerChoice}`;
+            }
+            
+        }
+        
+        function gamePlay(){
+            score=0;
+
+            let playerDeside = playerChoice();
+            let computerDeside = computerChoice();
+            let singleRoundResults = singleRound(playerDeside,computerDeside);
+            console.log (singleRoundResults);
+            
+            playerDeside = playerChoice();
+            computerDeside = computerChoice();
+            singleRoundResults = singleRound(playerDeside,computerDeside);
+            console.log (singleRoundResults);
+
+            playerDeside = playerChoice();
+            computerDeside = computerChoice();
+            singleRoundResults = singleRound(playerDeside,computerDeside);
+            console.log (singleRoundResults);
+            
+            playerDeside = playerChoice();
+            computerDeside = computerChoice();
+            singleRoundResults = singleRound(playerDeside,computerDeside);
+            console.log (singleRoundResults);
+            
+            playerDeside = playerChoice();
+            computerDeside = computerChoice();
+            singleRoundResults = singleRound(playerDeside,computerDeside);
+            console.log (singleRoundResults); 
+            alert(score);
+            if (score>0){
+                alert("YOU BEAT THE BOT!!!");
+            }else if (score<0){
+                alert("BOOOOO!!!! THE BOT GOTCHA!!!");
+            }
+        }
+       
+        gamePlay();
+        
     </script>
 </body>
-</html>
+</html> 
